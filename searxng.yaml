@@ -1,0 +1,24 @@
+version: "3.9"
+
+networks:
+  reverse-proxy:
+    external: true
+    
+services:
+  main:
+    image: searxng/searxng:2025.1.17-a576f69c1
+    networks:
+     - reverse-proxy
+    environment:
+      - BASE_URL=https://search.actuary.dev
+      - INSTANCE_NAME=search
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.search.rule=Host(`search.actuary.dev`)"
+        - "traefik.http.routers.search.entrypoints=websecure"
+        - "traefik.http.routers.search.service=search"
+        - "traefik.http.routers.search.tls.certresolver=myresolver"
+        - "traefik.http.services.search.loadbalancer.server.port=8080"
+        ## Middlewares
+        - "traefik.http.routers.search.middlewares=authentik@file"
