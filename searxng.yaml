@@ -22,3 +22,6 @@ services:
         - "traefik.http.services.search.loadbalancer.server.port=8080"
         ## Middlewares
         - "traefik.http.routers.search.middlewares=authentik@file"
+        #DIUN
+        - diun.enable=true
+        - diun.notify_on=new
