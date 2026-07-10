@@ -6,7 +6,7 @@ networks:
     
 services:
   main:
-    image: searxng/searxng:2025.1.17-a576f69c1
+    image: searxng/searxng:2026.7.10-4abac08de
     networks:
      - reverse-proxy
     environment:
