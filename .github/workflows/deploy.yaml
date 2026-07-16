@@ -10,6 +10,7 @@ jobs:
     env:
       TAG: ${{ github.sha }}
       SEARXNG_SECRET_KEY: ${{ secrets.SEARXNG_SECRET_KEY }}
+      BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7

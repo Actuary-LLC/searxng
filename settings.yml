@@ -16,3 +16,8 @@ outgoing:
     - "0.0.0.0"
   pool_connections: 100
   pool_maxsize: 20
+
+engines:
+  - name: brave
+    api_key: ${BRAVE_API_KEY}
+    weight: 2
