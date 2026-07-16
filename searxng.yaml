@@ -1,6 +1,8 @@
 version: "3.9"
 
 networks:
+  internet:
+    driver: bridge
   reverse-proxy:
     external: true
     
@@ -10,7 +12,11 @@ services:
     volumes:
       - ./settings.yml:/etc/searxng/settings.yml:ro
     networks:
-     - reverse-proxy
+      - internet
+      - reverse-proxy
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     environment:
       - BASE_URL=https://search.actuary.dev
       - INSTANCE_NAME=search
