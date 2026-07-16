@@ -7,11 +7,14 @@ networks:
 services:
   main:
     image: searxng/searxng:2026.7.10-4abac08de
+    volumes:
+      - ./settings.yml:/etc/searxng/settings.yml:ro
     networks:
      - reverse-proxy
     environment:
       - BASE_URL=https://search.actuary.dev
       - INSTANCE_NAME=search
+      - SEARXNG_SECRET=${SEARXNG_SECRET_KEY}
     deploy:
       labels:
         - "traefik.enable=true"
