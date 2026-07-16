@@ -9,6 +9,7 @@ jobs:
     runs-on: [coral]
     env:
       TAG: ${{ github.sha }}
+      SEARXNG_SECRET_KEY: ${{ secrets.SEARXNG_SECRET_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
