@@ -16,6 +16,9 @@ jobs:
         with:
           repository: Actuary-LLC/searxng
           ref: main
+      - name: Cleanup orphaned networks
+        run: |
+          docker network rm searxng_internet 2>/dev/null || true
       - name: Update searxng stack
         run: |
           docker stack deploy -c searxng.yaml searxng
