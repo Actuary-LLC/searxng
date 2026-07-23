@@ -3,15 +3,22 @@ version: "3.9"
 networks:
   internet:
     driver: overlay
-    attachable: true
+    attachable:  true
   reverse-proxy:
     external: true
-    
+
+configs:
+  settings:
+    name: searxng_settings_${TAG}
+    file: ./settings.yml
+    template_driver: golang
+
 services:
   main:
     image: searxng/searxng:2026.7.10-4abac08de
-    volumes:
-      - ./settings.yml:/etc/searxng/settings.yml:ro
+    configs:
+      - source: settings
+        target: /etc/searxng/settings.yml
     networks:
       - internet
       - reverse-proxy
