@@ -19,5 +19,5 @@ outgoing:
 
 engines:
   - name: brave
-    api_key: ${BRAVE_API_KEY}
+    api_key: {{.Env.BRAVE_API_KEY}}
     weight: 2
