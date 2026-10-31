@@ -23,3 +23,8 @@ jobs:
       - name: Update searxng stack
         run: |
           docker stack deploy -c searxng.yaml searxng
+      - name: Cleanup old configs
+        run: |
+          for cfg in $(docker config ls --format '{{.Name}}' | grep '^searxng_settings_' | grep -v "searxng_settings_${TAG}"); do
+            docker config rm "$cfg" 2>/dev/null || true
+          done
