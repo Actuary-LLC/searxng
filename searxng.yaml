@@ -15,7 +15,7 @@ configs:
 
 services:
   main:
-    image: searxng/searxng:2026.7.10-4abac08de
+    image: searxng/searxng:2026.10.30-ffa88e3ba
     configs:
       - source: settings
         target: /etc/searxng/settings.yml
@@ -39,7 +39,7 @@ services:
         - "traefik.http.routers.search.tls.certresolver=myresolver"
         - "traefik.http.services.search.loadbalancer.server.port=8080"
         ## Middlewares
-        - "traefik.http.routers.search.middlewares=authentik@swarm"
+        - "traefik.http.routers.search.middlewares=authentik@file"
         #DIUN
         - diun.enable=true
         - diun.notify_on=new
