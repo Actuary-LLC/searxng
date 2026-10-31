@@ -9,7 +9,7 @@ networks:
     
 services:
   main:
-    image: searxng/searxng:2026.7.10-4abac08de
+    image: searxng/searxng:2026.10.30-ffa88e3ba
     volumes:
       - ./settings.yml:/etc/searxng/settings.yml:ro
     networks:
